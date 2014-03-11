@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated location -->
+      <package
+            uri="http://location/1.0"
+            class="org.eclipse.smarthome.model.location.LocationModelPackage"
+            genModel="model/location.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated location -->
+      <package
+            uri="http://room/1.0"
+            class="org.eclipse.smarthome.model.room.RoomModelPackage"
+            genModel="model/location.genmodel"/>
+   </extension>
+</plugin>
