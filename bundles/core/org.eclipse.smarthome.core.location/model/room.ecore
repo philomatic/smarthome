@@ -9,6 +9,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interior" upperBound="-1"
+        eType="ecore:EClass location.ecore#//Interior" eOpposite="location.ecore#//Interior/room"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Corner">
     <eStructuralFeatures xsi:type="ecore:EReference" name="coordinates" lowerBound="1"

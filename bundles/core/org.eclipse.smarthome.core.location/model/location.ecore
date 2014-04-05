@@ -12,7 +12,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Location">
     <eStructuralFeatures xsi:type="ecore:EReference" name="containedSubjects" upperBound="-1"
         eType="#//Subject" eOpposite="#//Subject/location"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="#//DateTime">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Return the time of this Location fix"/>
       </eAnnotations>
@@ -36,7 +36,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="latitude" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="altitude" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="DateTime" instanceClassName="org.joda.time.DateTime"/>
   <eClassifiers xsi:type="ecore:EClass" name="RoomCoordinates">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Used for Coordinates relative / in a single room, like a room wide capfloor"/>
@@ -52,5 +51,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="RoomLocation" eSuperTypes="#//Location">
     <eStructuralFeatures xsi:type="ecore:EReference" name="roomCoordinates" eType="#//RoomCoordinates"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="room" lowerBound="1" eType="ecore:EClass room.ecore#//Room"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//Location"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interior" eSuperTypes="#//Location">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="room" lowerBound="1" eType="ecore:EClass room.ecore#//Room"
+        eOpposite="room.ecore#//Room/interior"/>
   </eClassifiers>
 </ecore:EPackage>
