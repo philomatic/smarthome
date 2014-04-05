@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.smarthome.model.location/src-gen"
-    creationIcons="false" modelPluginID="org.eclipse.smarthome.model.location" modelName="Location"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="7.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.smarthome.core.location/src-gen" creationIcons="false"
+    modelPluginID="org.eclipse.smarthome.core.location" modelName="Location" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>location.ecore</foreignModel>
-  <genPackages prefix="LocationModel" basePackage="org.eclipse.smarthome.model" disposableProviderFactory="true"
+  <genPackages prefix="LocationModel" basePackage="org.eclipse.smarthome.core" disposableProviderFactory="true"
       ecorePackage="location.ecore#/">
     <genDataTypes ecoreDataType="location.ecore#//DateTime"/>
     <genClasses ecoreClass="location.ecore#//Person"/>
@@ -44,7 +44,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference location.ecore#//RoomLocation/room"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="RoomModel" basePackage="org.eclipse.smarthome.model" ecorePackage="room.ecore#/">
+  <genPackages prefix="RoomModel" basePackage="org.eclipse.smarthome.core" ecorePackage="room.ecore#/">
     <genClasses ecoreClass="room.ecore#//Room">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference room.ecore#//Room/corners"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute room.ecore#//Room/squaremeters"/>

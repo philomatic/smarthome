@@ -10,12 +10,12 @@
   </parent>
 
   <properties>
-    <bundle.symbolicName>org.eclipse.smarthome.model.location</bundle.symbolicName>
-    <bundle.namespace>org.eclipse.smarthome.model.location</bundle.namespace>
+    <bundle.symbolicName>org.eclipse.smarthome.core.location</bundle.symbolicName>
+    <bundle.namespace>org.eclipse.smarthome.core.location</bundle.namespace>
   </properties>
 
   <groupId>org.eclipse.smarthome.model</groupId>
-  <artifactId>org.eclipse.smarthome.model.location</artifactId>
+  <artifactId>org.eclipse.smarthome.core.location</artifactId>
 
   <name>Eclipse SmartHome Model Location</name>
   <packaging>eclipse-plugin</packaging>

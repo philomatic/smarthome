@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.eclipse.smarthome.model.location</name>
+	<name>org.eclipse.smarthome.core.location</name>
 	<comment></comment>
 	<projects>
 	</projects>
