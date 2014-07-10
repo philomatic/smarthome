@@ -10,12 +10,11 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.eclipse.smarthome.core.location,
  org.eclipse.smarthome.core.location.impl,
- org.eclipse.smarthome.core.location.util,
- org.eclipse.smarthome.core.room,
- org.eclipse.smarthome.core.room.impl,
- org.eclipse.smarthome.core.room.util
+ org.eclipse.smarthome.core.location.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.smarthome.core.persistence,
+ org.eclipse.smarthome.core
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/folderobserver.xml,
   OSGI-INF/modelrepository.xml

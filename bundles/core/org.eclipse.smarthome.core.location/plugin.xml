@@ -20,8 +20,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated location -->
       <package
-            uri="http://room/1.0"
-            class="org.eclipse.smarthome.core.room.RoomModelPackage"
+            uri="http://location/1.0"
+            class="org.eclipse.smarthome.core.location.LocationModelPackage"
             genModel="model/location.genmodel"/>
    </extension>
 </plugin>

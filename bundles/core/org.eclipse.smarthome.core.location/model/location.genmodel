@@ -7,9 +7,8 @@
   <foreignModel>location.ecore</foreignModel>
   <genPackages prefix="LocationModel" basePackage="org.eclipse.smarthome.core" disposableProviderFactory="true"
       ecorePackage="location.ecore#/">
-    <genDataTypes ecoreDataType="location.ecore#//DateTime"/>
+    <genDataTypes ecoreDataType="location.ecore#//Item"/>
     <genClasses ecoreClass="location.ecore#//Person"/>
-    <genClasses ecoreClass="location.ecore#//Item"/>
     <genClasses image="false" ecoreClass="location.ecore#//Subject">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference location.ecore#//Subject/location"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference location.ecore#//Subject/assignedProviders"/>
@@ -41,22 +40,62 @@
     </genClasses>
     <genClasses ecoreClass="location.ecore#//RoomLocation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference location.ecore#//RoomLocation/roomCoordinates"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference location.ecore#//RoomLocation/room"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference location.ecore#//RoomLocation/children"/>
     </genClasses>
-  </genPackages>
-  <genPackages prefix="RoomModel" basePackage="org.eclipse.smarthome.core" ecorePackage="room.ecore#/">
-    <genClasses ecoreClass="room.ecore#//Room">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference room.ecore#//Room/corners"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute room.ecore#//Room/squaremeters"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute room.ecore#//Room/height"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute room.ecore#//Room/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute room.ecore#//Room/id"/>
-      <genOperations ecoreOperation="room.ecore#//Room/calculateSquareMeters"/>
+    <genClasses ecoreClass="location.ecore#//Interior">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//Interior/name"/>
     </genClasses>
-    <genClasses ecoreClass="room.ecore#//Corner">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference room.ecore#//Corner/coordinates"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference room.ecore#//Corner/previousCorner"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference room.ecore#//Corner/nextCorner"/>
+    <genClasses ecoreClass="location.ecore#//LocatableItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//LocatableItem/item"/>
     </genClasses>
+    <nestedGenPackages prefix="LocationModel" basePackage="org.eclipse.smarthome.core"
+        disposableProviderFactory="true" ecorePackage="location.ecore#/">
+      <genDataTypes ecoreDataType="location.ecore#//Item"/>
+      <genClasses ecoreClass="location.ecore#//Person"/>
+      <genClasses image="false" ecoreClass="location.ecore#//Subject">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference location.ecore#//Subject/location"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference location.ecore#//Subject/assignedProviders"/>
+      </genClasses>
+      <genClasses ecoreClass="location.ecore#//Location">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference location.ecore#//Location/containedSubjects"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//Location/time"/>
+      </genClasses>
+      <genClasses ecoreClass="location.ecore#//LocationProvider">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//LocationProvider/name"/>
+        <genOperations ecoreOperation="location.ecore#//LocationProvider/provideLocations"/>
+      </genClasses>
+      <genClasses ecoreClass="location.ecore#//AssignableProvider">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference location.ecore#//AssignableProvider/owner"/>
+      </genClasses>
+      <genClasses ecoreClass="location.ecore#//Pet"/>
+      <genClasses ecoreClass="location.ecore#//GeoCoordinates">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//GeoCoordinates/longitude"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//GeoCoordinates/latitude"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//GeoCoordinates/altitude"/>
+      </genClasses>
+      <genClasses ecoreClass="location.ecore#//RoomCoordinates">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//RoomCoordinates/x"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//RoomCoordinates/y"/>
+      </genClasses>
+      <genClasses ecoreClass="location.ecore#//GeoLocation">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference location.ecore#//GeoLocation/coordinates"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//GeoLocation/accuracy"/>
+      </genClasses>
+      <genClasses ecoreClass="location.ecore#//RoomLocation">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference location.ecore#//RoomLocation/roomCoordinates"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference location.ecore#//RoomLocation/children"/>
+      </genClasses>
+      <genClasses ecoreClass="location.ecore#//Interior">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//Interior/name"/>
+      </genClasses>
+      <genClasses ecoreClass="location.ecore#//LocatableItem">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//LocatableItem/item"/>
+      </genClasses>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>
