@@ -1,5 +1,6 @@
 target/
 src-gen/
+!bundles/core/org.eclipse.smarthome.core.location/src-gen/
 xtend-gen/
 bin/
 .antlr*

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated location -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.smarthome.core.location.presentation.LocationModelWizardID"
+            name="%_UI_LocationModelWizard_label"
+            class="org.eclipse.smarthome.core.location.presentation.LocationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/LocationModelFile.gif">
+         <description>%_UI_LocationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated location -->
+      <editor
+            id="org.eclipse.smarthome.core.location.presentation.LocationEditorID"
+            name="%_UI_LocationEditor_label"
+            icon="icons/full/obj16/LocationModelFile.gif"
+            extensions="location"
+            class="org.eclipse.smarthome.core.location.presentation.LocationEditor"
+            contributorClass="org.eclipse.smarthome.core.location.presentation.LocationActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

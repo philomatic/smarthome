@@ -10,6 +10,8 @@
         <details key="documentation" value="Return the time of this Location fix"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//DiscreteLocation"
+        eOpposite="#//DiscreteLocation/subLocations"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocationProvider">
     <eOperations name="provideLocations" upperBound="-1" eType="#//Location">
@@ -22,23 +24,24 @@
   <eClassifiers xsi:type="ecore:EClass" name="AssignableProvider" eSuperTypes="#//LocationProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//LocatableItem"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RoomLocation" eSuperTypes="#//ContinuousLocation">
+  <eClassifiers xsi:type="ecore:EClass" name="RoomPosition" eSuperTypes="#//ContinuousLocation">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Used for Coordinates relative / in a single room, like a room wide capfloor"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContinuousLocation" eSuperTypes="#//Location">
+  <eClassifiers xsi:type="ecore:EClass" name="ContinuousLocation" abstract="true"
+      eSuperTypes="#//Location">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="accuracy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="z" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiscreteLocation" eSuperTypes="#//Location">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="roomCoordinates" eType="#//RoomLocation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subLocation" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subLocations" upperBound="-1"
+        eType="#//Location" containment="true" eOpposite="#//Location/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adjacentLocations" upperBound="-1"
         eType="#//DiscreteLocation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="adjacentRooms" upperBound="-1"
-        eType="#//DiscreteLocation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Item" instanceClassName="org.eclipse.smarthome.core.items.Item"
       abstract="true" interface="true"/>
@@ -49,8 +52,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" instanceClassName="org.eclipse.smarthome.core.types.State"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GeoLocation" eSuperTypes="#//ContinuousLocation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0" eType="#//ContinuousLocation"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass0" eSuperTypes="#//ContinuousLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GeoLocation" eSuperTypes="#//ContinuousLocation"/>
 </ecore:EPackage>

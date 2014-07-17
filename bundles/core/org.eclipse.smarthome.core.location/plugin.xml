@@ -9,19 +9,18 @@
 
 
 
+null
+null
+null
+null
+null
+null
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated location -->
       <package
             uri="http://location/1.0"
-            class="org.eclipse.smarthome.core.location.LocationModelPackage"
+            class="org.eclipse.smarthome.core.location.LocationPackage"
             genModel="model/location.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated location -->
-      <package
-            uri="http://location/1.0"
-            class="org.eclipse.smarthome.core.location.LocationModelPackage"
-            genModel="model/location.genmodel"/>
-   </extension>
 </plugin>

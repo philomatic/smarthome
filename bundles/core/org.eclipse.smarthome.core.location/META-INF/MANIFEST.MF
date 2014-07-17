@@ -1,11 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Location Model
+Bundle-Name: Core Location
 Bundle-SymbolicName: org.eclipse.smarthome.core.location;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
-Bundle-Activator: org.eclipse.smarthome.model.core.internal.ModelLocationActivator
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.eclipse.smarthome.core.location,
@@ -13,8 +12,10 @@ Export-Package: org.eclipse.smarthome.core.location,
  org.eclipse.smarthome.core.location.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.smarthome.core,
  org.eclipse.smarthome.core.persistence,
- org.eclipse.smarthome.core
+ org.eclipse.emf.ecore.xmi
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/folderobserver.xml,
   OSGI-INF/modelrepository.xml
+Bundle-Activator: org.eclipse.smarthome.core.location.internal.LocationBundleActivator
