@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="location_knx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Switch Thing Type -->
+	<thing-type id="provider">
+		<label>KNX LocationProvider</label>
+		<description>Provide Locations from KNX</description>
+
+		<channels>
+			<channel id="switch" typeId="switch" />
+		</channels>
+
+		<config-description>
+			<parameter name="location" type="text">
+				<label>Location Model</label>
+				<description>File *.location with the LocationModel to use.
+                </description>
+				<required>true</required>
+			</parameter>
+		</config-description>
+
+	</thing-type>
+
+	<!-- Switch Push Channel Type -->
+	<channel-type id="switch">
+		<item-type>DateTime</item-type>
+		<label>KNX Switch Push Channel</label>
+		<description>The switchPushDate Channel allows to receive Pushes on KNX Switches</description>
+	</channel-type>
+
+</thing:thing-descriptions>
