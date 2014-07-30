@@ -4,6 +4,9 @@ package org.eclipse.smarthome.core.location.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -41,7 +44,70 @@ public class DiscreteLocationImpl extends LocationImpl implements DiscreteLocati
 	 */
 	protected DiscreteLocationImpl() {
 		super();
+		createAdjacentLocationsUpdater();
 	}
+	
+	private void createAdjacentLocationsUpdater() {
+		Adapter adapter = new AdapterImpl(){
+			@SuppressWarnings("unchecked")
+			@Override
+			public void notifyChanged(Notification msg) {
+				super.notifyChanged(msg);
+				if (msg.getFeature().equals(LocationPackage.eINSTANCE.getDiscreteLocation_AdjacentLocations())){
+					switch (msg.getEventType()) {
+					
+					case Notification.ADD:{
+						DiscreteLocation newLocation = (DiscreteLocation) msg.getNewValue();
+						updateNewLocation(newLocation);
+						break;
+					}
+					case Notification.REMOVE:{
+						DiscreteLocation oldLocation = (DiscreteLocation) msg.getOldValue();
+						updateOldLocation(oldLocation);
+						break;
+					}
+					case Notification.ADD_MANY:{
+						Object newValue = msg.getNewValue();
+						for (DiscreteLocation newLocation : (Iterable<DiscreteLocation>)newValue) {
+							updateNewLocation(newLocation);
+						}
+						break;
+					}
+					case Notification.REMOVE_MANY:{
+						for (DiscreteLocation oldLocation : (Iterable<DiscreteLocation>)msg.getOldValue()) {
+							updateOldLocation(oldLocation);
+						}
+						break;
+					}
+					default:
+						break;
+					}
+				}
+			}
+		};
+		this.eAdapters().add(adapter);
+	}
+	
+	/**
+	 * 
+	 * @generated NOT
+	 */
+	protected void updateOldLocation(DiscreteLocation oldLocation) {
+		EList<DiscreteLocation> oldLocationAdjacents = oldLocation.getAdjacentLocations();
+		if (oldLocationAdjacents.contains(this))
+		oldLocationAdjacents.remove(this);
+	}
+
+	/**
+	 * 
+	 * @generated NOT
+	 */
+	private void updateNewLocation(DiscreteLocation newLocation) {
+		EList<DiscreteLocation> newLocationAdjacents = newLocation.getAdjacentLocations();
+		if (!newLocationAdjacents.contains(this))
+		newLocationAdjacents.add(this);
+	}
+
 
 	/**
 	 * <!-- begin-user-doc -->
