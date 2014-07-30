@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="location_network"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+        xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    <!-- Smartphone Thing Type -->
+    <thing-type id="smartphone">
+        <label>location_network Binding Thing</label>
+        <description>Sample thing for location_network Binding</description>
+
+        <channels>
+            <channel id="ping" typeId="ping"/>
+        </channels>
+        
+        <config-description>
+			<parameter name="location" type="text">
+				<label>Location</label>
+				<description>Location for this smartphone
+                </description>
+				<required>true</required>
+			</parameter>
+			
+			<parameter name="owner" type="text">
+				<label>Owner</label>
+				<description>Owner for this smartphone
+                </description>
+				<required>true</required>
+			</parameter>
+		</config-description>
+        
+    </thing-type>
+
+    <!-- Ping Channel Type -->
+    <channel-type id="ping">
+        <item-type>Switch</item-type>
+        <label>location_network ping Binding Channel</label>
+        <description>Ping channel for location_network Binding</description>
+    </channel-type>
+    
+    <!-- Ping Channel Type -->
+
+</thing:thing-descriptions>
