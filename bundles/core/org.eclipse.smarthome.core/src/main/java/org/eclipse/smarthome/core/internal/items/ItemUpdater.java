@@ -59,16 +59,16 @@ public class ItemUpdater extends AbstractEventSubscriber {
 				} else {
 					// Look for class hierarchy
 					for (Class<? extends State> state : item.getAcceptedDataTypes()) {
-						try {
-							if (!state.isEnum() && state.newInstance().getClass().isAssignableFrom(newStatus.getClass())) {
+//						try {
+							if (!state.isEnum() && state.isAssignableFrom(newStatus.getClass())) {
 								isAccepted = true;
 								break;
 							}
-						} catch (InstantiationException e) {
-							logger.warn("InstantiationException on {}", e.getMessage()); // Should never happen
-						} catch (IllegalAccessException e) {
-							logger.warn("IllegalAccessException on {}", e.getMessage()); // Should never happen
-						}
+//						} catch (InstantiationException e) {
+//							logger.warn("InstantiationException on {}", e.getMessage()); // Should never happen
+//						} catch (IllegalAccessException e) {
+//							logger.warn("IllegalAccessException on {}", e.getMessage()); // Should never happen
+//						}
 					}
 				}				
 				if (isAccepted) {
