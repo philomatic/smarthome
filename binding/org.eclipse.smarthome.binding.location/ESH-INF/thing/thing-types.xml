@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="location"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Model Thing Type -->
+	<thing-type id="model">
+		<label>location Binding Thing</label>
+		<description>Sample thing for location Binding</description>
+
+		<channels>
+			<channel id="state" typeId="state" />
+		</channels>
+
+		<config-description>
+			<parameter name=locationModel type="text">
+				<label>Location Model</label>
+				<description>File *.location with the LocationModel to use.
+                </description>
+				<required>true</required>
+			</parameter>
+		</config-description>
+		
+	</thing-type>
+	
+	<thing-type id="user">
+		<label>location Binding Thing</label>
+		<description>Sample thing for location Binding</description>
+
+		<channels>
+			<channel id="locatable" typeId="locatable" />
+			<channel id="lights" typeId="lights" />
+		</channels>
+		
+	</thing-type>
+	
+	
+
+	<!-- Locatable Channel Type -->
+	<channel-type id="locatable">
+		<item-type>Locatable</item-type>
+		<label>Locatable Binding Channel</label>
+		<description>Channel for Locatable Items in given Location Model</description>
+	</channel-type>
+	
+	<!-- Locatable Channel Type -->
+	<channel-type id="lights">
+		<item-type>Switch</item-type>
+		<label>Locatable Binding Channel</label>
+		<description>Channel for Locatable Items in given Location Model</description>
+	</channel-type>
+	
+	<!-- Location Channel Type -->
+	<channel-type id="state">
+		<item-type>LocationModel</item-type>
+		<label>Location Binding Channel</label>
+		<description>Channel for Locatable Items in given Location Model</description>
+	</channel-type>
+
+</thing:thing-descriptions>
