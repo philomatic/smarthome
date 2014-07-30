@@ -30,7 +30,6 @@
 
 		<channels>
 			<channel id="locatable" typeId="locatable" />
-			<channel id="lights" typeId="lights" />
 		</channels>
 		
 	</thing-type>
@@ -40,13 +39,6 @@
 	<!-- Locatable Channel Type -->
 	<channel-type id="locatable">
 		<item-type>Locatable</item-type>
-		<label>Locatable Binding Channel</label>
-		<description>Channel for Locatable Items in given Location Model</description>
-	</channel-type>
-	
-	<!-- Locatable Channel Type -->
-	<channel-type id="lights">
-		<item-type>Switch</item-type>
 		<label>Locatable Binding Channel</label>
 		<description>Channel for Locatable Items in given Location Model</description>
 	</channel-type>
