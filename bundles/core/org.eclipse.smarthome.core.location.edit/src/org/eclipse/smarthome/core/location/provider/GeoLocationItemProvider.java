@@ -4,7 +4,6 @@ package org.eclipse.smarthome.core.location.provider;
 
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -65,8 +64,7 @@ public class GeoLocationItemProvider extends ContinuousLocationItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((GeoLocation)object).getTime();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((GeoLocation)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_GeoLocation_type") :
 			getString("_UI_GeoLocation_type") + " " + label;

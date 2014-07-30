@@ -4,15 +4,9 @@ package org.eclipse.smarthome.core.location.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.smarthome.core.items.Item;
-
 import org.eclipse.smarthome.core.location.*;
-
 import org.eclipse.smarthome.core.types.State;
 
 /**
@@ -72,16 +66,8 @@ public class LocationAdapterFactory extends AdapterFactoryImpl {
 	protected LocationSwitch<Adapter> modelSwitch =
 		new LocationSwitch<Adapter>() {
 			@Override
-			public Adapter casePerson(Person object) {
-				return createPersonAdapter();
-			}
-			@Override
 			public Adapter caseLocation(Location object) {
 				return createLocationAdapter();
-			}
-			@Override
-			public Adapter caseLocationProvider(LocationProvider object) {
-				return createLocationProviderAdapter();
 			}
 			@Override
 			public Adapter caseAssignableProvider(AssignableProvider object) {
@@ -100,20 +86,20 @@ public class LocationAdapterFactory extends AdapterFactoryImpl {
 				return createDiscreteLocationAdapter();
 			}
 			@Override
-			public Adapter caseItem(Item object) {
-				return createItemAdapter();
-			}
-			@Override
-			public Adapter caseLocatableItem(LocatableItem object) {
-				return createLocatableItemAdapter();
-			}
-			@Override
 			public Adapter caseState(State object) {
 				return createStateAdapter();
 			}
 			@Override
 			public Adapter caseGeoLocation(GeoLocation object) {
 				return createGeoLocationAdapter();
+			}
+			@Override
+			public Adapter caseLocationListener(LocationListener object) {
+				return createLocationListenerAdapter();
+			}
+			@Override
+			public Adapter caseLocationProvider(LocationProvider object) {
+				return createLocationProviderAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -134,20 +120,6 @@ public class LocationAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.smarthome.core.location.Person <em>Person</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.smarthome.core.location.Person
-	 * @generated
-	 */
-	public Adapter createPersonAdapter() {
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.smarthome.core.location.Location <em>Location</em>}'.
@@ -234,34 +206,6 @@ public class LocationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.smarthome.core.items.Item <em>Item</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.smarthome.core.items.Item
-	 * @generated
-	 */
-	public Adapter createItemAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.smarthome.core.location.LocatableItem <em>Locatable Item</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.smarthome.core.location.LocatableItem
-	 * @generated
-	 */
-	public Adapter createLocatableItemAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.smarthome.core.types.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -286,6 +230,20 @@ public class LocationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGeoLocationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.smarthome.core.location.LocationListener <em>Listener</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.smarthome.core.location.LocationListener
+	 * @generated
+	 */
+	public Adapter createLocationListenerAdapter() {
 		return null;
 	}
 

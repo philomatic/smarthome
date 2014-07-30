@@ -4,6 +4,7 @@ package org.eclipse.smarthome.core.location;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -58,126 +59,6 @@ public interface LocationPackage extends EPackage {
 	LocationPackage eINSTANCE = org.eclipse.smarthome.core.location.impl.LocationPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.smarthome.core.items.Item <em>Item</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.smarthome.core.items.Item
-	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getItem()
-	 * @generated
-	 */
-	int ITEM = 7;
-
-	/**
-	 * The number of structural features of the '<em>Item</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Item</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.smarthome.core.location.impl.LocatableItemImpl <em>Locatable Item</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.smarthome.core.location.impl.LocatableItemImpl
-	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getLocatableItem()
-	 * @generated
-	 */
-	int LOCATABLE_ITEM = 8;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCATABLE_ITEM__LOCATION = ITEM_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Assigned Providers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCATABLE_ITEM__ASSIGNED_PROVIDERS = ITEM_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Locatable Item</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCATABLE_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Locatable Item</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCATABLE_ITEM_OPERATION_COUNT = ITEM_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.smarthome.core.location.impl.PersonImpl <em>Person</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.smarthome.core.location.impl.PersonImpl
-	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getPerson()
-	 * @generated
-	 */
-	int PERSON = 0;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSON__LOCATION = LOCATABLE_ITEM__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Assigned Providers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSON__ASSIGNED_PROVIDERS = LOCATABLE_ITEM__ASSIGNED_PROVIDERS;
-
-	/**
-	 * The number of structural features of the '<em>Person</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSON_FEATURE_COUNT = LOCATABLE_ITEM_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Person</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSON_OPERATION_COUNT = LOCATABLE_ITEM_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.smarthome.core.types.State <em>State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,7 +66,7 @@ public interface LocationPackage extends EPackage {
 	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 9;
+	int STATE = 5;
 
 	/**
 	 * The number of structural features of the '<em>State</em>' class.
@@ -213,16 +94,43 @@ public interface LocationPackage extends EPackage {
 	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getLocation()
 	 * @generated
 	 */
-	int LOCATION = 1;
+	int LOCATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Contained Subjects</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION__CONTAINED_SUBJECTS = STATE_FEATURE_COUNT + 0;
+	int LOCATION__PARENT = STATE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Sub Locations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION__SUB_LOCATIONS = STATE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION__NAME = STATE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Contained Things</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION__CONTAINED_THINGS = STATE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -231,7 +139,7 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION__TIME = STATE_FEATURE_COUNT + 1;
+	int LOCATION__TIME = STATE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Location</em>' class.
@@ -240,7 +148,16 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION_FEATURE_COUNT = STATE_FEATURE_COUNT + 2;
+	int LOCATION_FEATURE_COUNT = STATE_FEATURE_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Full String Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION___FULL_STRING_REPRESENTATION = STATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Location</em>' class.
@@ -249,26 +166,17 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION_OPERATION_COUNT = STATE_OPERATION_COUNT + 0;
+	int LOCATION_OPERATION_COUNT = STATE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.smarthome.core.location.impl.LocationProviderImpl <em>Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.smarthome.core.location.LocationProvider <em>Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.smarthome.core.location.impl.LocationProviderImpl
+	 * @see org.eclipse.smarthome.core.location.LocationProvider
 	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getLocationProvider()
 	 * @generated
 	 */
-	int LOCATION_PROVIDER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCATION_PROVIDER__NAME = 0;
+	int LOCATION_PROVIDER = 8;
 
 	/**
 	 * The number of structural features of the '<em>Provider</em>' class.
@@ -277,7 +185,7 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION_PROVIDER_FEATURE_COUNT = 1;
+	int LOCATION_PROVIDER_FEATURE_COUNT = 0;
 
 	/**
 	 * The operation id for the '<em>Provide Locations</em>' operation.
@@ -286,7 +194,43 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION_PROVIDER___PROVIDE_LOCATIONS = 0;
+	int LOCATION_PROVIDER___PROVIDE_LOCATIONS__BOOLEAN = 0;
+
+	/**
+	 * The operation id for the '<em>Register</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_PROVIDER___REGISTER__LOCATIONLISTENER = 1;
+
+	/**
+	 * The operation id for the '<em>Unregister</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_PROVIDER___UNREGISTER__LOCATIONLISTENER = 2;
+
+	/**
+	 * The operation id for the '<em>Is Assignable</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_PROVIDER___IS_ASSIGNABLE = 3;
+
+	/**
+	 * The operation id for the '<em>As Assignable Provider</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_PROVIDER___AS_ASSIGNABLE_PROVIDER = 4;
 
 	/**
 	 * The number of operations of the '<em>Provider</em>' class.
@@ -295,29 +239,20 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION_PROVIDER_OPERATION_COUNT = 1;
+	int LOCATION_PROVIDER_OPERATION_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.smarthome.core.location.impl.AssignableProviderImpl <em>Assignable Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.smarthome.core.location.AssignableProvider <em>Assignable Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.smarthome.core.location.impl.AssignableProviderImpl
+	 * @see org.eclipse.smarthome.core.location.AssignableProvider
 	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getAssignableProvider()
 	 * @generated
 	 */
-	int ASSIGNABLE_PROVIDER = 3;
+	int ASSIGNABLE_PROVIDER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNABLE_PROVIDER__NAME = LOCATION_PROVIDER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * The feature id for the '<em><b>Owner</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -341,7 +276,43 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNABLE_PROVIDER___PROVIDE_LOCATIONS = LOCATION_PROVIDER___PROVIDE_LOCATIONS;
+	int ASSIGNABLE_PROVIDER___PROVIDE_LOCATIONS__BOOLEAN = LOCATION_PROVIDER___PROVIDE_LOCATIONS__BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Register</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNABLE_PROVIDER___REGISTER__LOCATIONLISTENER = LOCATION_PROVIDER___REGISTER__LOCATIONLISTENER;
+
+	/**
+	 * The operation id for the '<em>Unregister</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNABLE_PROVIDER___UNREGISTER__LOCATIONLISTENER = LOCATION_PROVIDER___UNREGISTER__LOCATIONLISTENER;
+
+	/**
+	 * The operation id for the '<em>Is Assignable</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNABLE_PROVIDER___IS_ASSIGNABLE = LOCATION_PROVIDER___IS_ASSIGNABLE;
+
+	/**
+	 * The operation id for the '<em>As Assignable Provider</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNABLE_PROVIDER___AS_ASSIGNABLE_PROVIDER = LOCATION_PROVIDER___AS_ASSIGNABLE_PROVIDER;
 
 	/**
 	 * The number of operations of the '<em>Assignable Provider</em>' class.
@@ -360,16 +331,43 @@ public interface LocationPackage extends EPackage {
 	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getContinuousLocation()
 	 * @generated
 	 */
-	int CONTINUOUS_LOCATION = 5;
+	int CONTINUOUS_LOCATION = 3;
 
 	/**
-	 * The feature id for the '<em><b>Contained Subjects</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTINUOUS_LOCATION__CONTAINED_SUBJECTS = LOCATION__CONTAINED_SUBJECTS;
+	int CONTINUOUS_LOCATION__PARENT = LOCATION__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Sub Locations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_LOCATION__SUB_LOCATIONS = LOCATION__SUB_LOCATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_LOCATION__NAME = LOCATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Contained Things</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_LOCATION__CONTAINED_THINGS = LOCATION__CONTAINED_THINGS;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -426,6 +424,15 @@ public interface LocationPackage extends EPackage {
 	int CONTINUOUS_LOCATION_FEATURE_COUNT = LOCATION_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Full String Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_LOCATION___FULL_STRING_REPRESENTATION = LOCATION___FULL_STRING_REPRESENTATION;
+
+	/**
 	 * The number of operations of the '<em>Continuous Location</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -442,16 +449,43 @@ public interface LocationPackage extends EPackage {
 	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getRoomPosition()
 	 * @generated
 	 */
-	int ROOM_POSITION = 4;
+	int ROOM_POSITION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Contained Subjects</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOM_POSITION__CONTAINED_SUBJECTS = CONTINUOUS_LOCATION__CONTAINED_SUBJECTS;
+	int ROOM_POSITION__PARENT = CONTINUOUS_LOCATION__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Sub Locations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM_POSITION__SUB_LOCATIONS = CONTINUOUS_LOCATION__SUB_LOCATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM_POSITION__NAME = CONTINUOUS_LOCATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Contained Things</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM_POSITION__CONTAINED_THINGS = CONTINUOUS_LOCATION__CONTAINED_THINGS;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -508,6 +542,15 @@ public interface LocationPackage extends EPackage {
 	int ROOM_POSITION_FEATURE_COUNT = CONTINUOUS_LOCATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Full String Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM_POSITION___FULL_STRING_REPRESENTATION = CONTINUOUS_LOCATION___FULL_STRING_REPRESENTATION;
+
+	/**
 	 * The number of operations of the '<em>Room Position</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -524,16 +567,43 @@ public interface LocationPackage extends EPackage {
 	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getDiscreteLocation()
 	 * @generated
 	 */
-	int DISCRETE_LOCATION = 6;
+	int DISCRETE_LOCATION = 4;
 
 	/**
-	 * The feature id for the '<em><b>Contained Subjects</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DISCRETE_LOCATION__CONTAINED_SUBJECTS = LOCATION__CONTAINED_SUBJECTS;
+	int DISCRETE_LOCATION__PARENT = LOCATION__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Sub Locations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_LOCATION__SUB_LOCATIONS = LOCATION__SUB_LOCATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_LOCATION__NAME = LOCATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Contained Things</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_LOCATION__CONTAINED_THINGS = LOCATION__CONTAINED_THINGS;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -545,31 +615,13 @@ public interface LocationPackage extends EPackage {
 	int DISCRETE_LOCATION__TIME = LOCATION__TIME;
 
 	/**
-	 * The feature id for the '<em><b>Sub Locations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DISCRETE_LOCATION__SUB_LOCATIONS = LOCATION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Adjacent Locations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DISCRETE_LOCATION__ADJACENT_LOCATIONS = LOCATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DISCRETE_LOCATION__NAME = LOCATION_FEATURE_COUNT + 2;
+	int DISCRETE_LOCATION__ADJACENT_LOCATIONS = LOCATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Discrete Location</em>' class.
@@ -578,7 +630,16 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DISCRETE_LOCATION_FEATURE_COUNT = LOCATION_FEATURE_COUNT + 3;
+	int DISCRETE_LOCATION_FEATURE_COUNT = LOCATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Full String Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_LOCATION___FULL_STRING_REPRESENTATION = LOCATION___FULL_STRING_REPRESENTATION;
 
 	/**
 	 * The number of operations of the '<em>Discrete Location</em>' class.
@@ -597,16 +658,43 @@ public interface LocationPackage extends EPackage {
 	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getGeoLocation()
 	 * @generated
 	 */
-	int GEO_LOCATION = 10;
+	int GEO_LOCATION = 6;
 
 	/**
-	 * The feature id for the '<em><b>Contained Subjects</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEO_LOCATION__CONTAINED_SUBJECTS = CONTINUOUS_LOCATION__CONTAINED_SUBJECTS;
+	int GEO_LOCATION__PARENT = CONTINUOUS_LOCATION__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Sub Locations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEO_LOCATION__SUB_LOCATIONS = CONTINUOUS_LOCATION__SUB_LOCATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEO_LOCATION__NAME = CONTINUOUS_LOCATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Contained Things</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEO_LOCATION__CONTAINED_THINGS = CONTINUOUS_LOCATION__CONTAINED_THINGS;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -663,6 +751,15 @@ public interface LocationPackage extends EPackage {
 	int GEO_LOCATION_FEATURE_COUNT = CONTINUOUS_LOCATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Full String Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEO_LOCATION___FULL_STRING_REPRESENTATION = CONTINUOUS_LOCATION___FULL_STRING_REPRESENTATION;
+
+	/**
 	 * The number of operations of the '<em>Geo Location</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -671,16 +768,72 @@ public interface LocationPackage extends EPackage {
 	 */
 	int GEO_LOCATION_OPERATION_COUNT = CONTINUOUS_LOCATION_OPERATION_COUNT + 0;
 
-
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.location.Person <em>Person</em>}'.
+	 * The meta object id for the '{@link org.eclipse.smarthome.core.location.LocationListener <em>Listener</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Person</em>'.
-	 * @see org.eclipse.smarthome.core.location.Person
+	 * @see org.eclipse.smarthome.core.location.LocationListener
+	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getLocationListener()
 	 * @generated
 	 */
-	EClass getPerson();
+	int LOCATION_LISTENER = 7;
+
+	/**
+	 * The number of structural features of the '<em>Listener</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_LISTENER_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Location Update</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_LISTENER___LOCATION_UPDATE__ELIST = 0;
+
+	/**
+	 * The number of operations of the '<em>Listener</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_LISTENER_OPERATION_COUNT = 1;
+
+	/**
+	 * The meta object id for the '<em>Thing</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.smarthome.core.thing.Thing
+	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getThing()
+	 * @generated
+	 */
+	int THING = 9;
+
+	/**
+	 * The meta object id for the '<em>String</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.String
+	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getString()
+	 * @generated
+	 */
+	int STRING = 10;
+
+	/**
+	 * The meta object id for the '<em>boolean</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getboolean()
+	 * @generated
+	 */
+	int BOOLEAN = 11;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.location.Location <em>Location</em>}'.
@@ -693,15 +846,48 @@ public interface LocationPackage extends EPackage {
 	EClass getLocation();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.smarthome.core.location.Location#getContainedSubjects <em>Contained Subjects</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.smarthome.core.location.Location#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Contained Subjects</em>'.
-	 * @see org.eclipse.smarthome.core.location.Location#getContainedSubjects()
+	 * @return the meta object for the container reference '<em>Parent</em>'.
+	 * @see org.eclipse.smarthome.core.location.Location#getParent()
 	 * @see #getLocation()
 	 * @generated
 	 */
-	EReference getLocation_ContainedSubjects();
+	EReference getLocation_Parent();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.smarthome.core.location.Location#getSubLocations <em>Sub Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Sub Locations</em>'.
+	 * @see org.eclipse.smarthome.core.location.Location#getSubLocations()
+	 * @see #getLocation()
+	 * @generated
+	 */
+	EReference getLocation_SubLocations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.smarthome.core.location.Location#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.smarthome.core.location.Location#getName()
+	 * @see #getLocation()
+	 * @generated
+	 */
+	EAttribute getLocation_Name();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.smarthome.core.location.Location#getContainedThings <em>Contained Things</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Contained Things</em>'.
+	 * @see org.eclipse.smarthome.core.location.Location#getContainedThings()
+	 * @see #getLocation()
+	 * @generated
+	 */
+	EAttribute getLocation_ContainedThings();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.smarthome.core.location.Location#getTime <em>Time</em>}'.
@@ -715,35 +901,14 @@ public interface LocationPackage extends EPackage {
 	EAttribute getLocation_Time();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.location.LocationProvider <em>Provider</em>}'.
+	 * Returns the meta object for the '{@link org.eclipse.smarthome.core.location.Location#fullStringRepresentation() <em>Full String Representation</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Provider</em>'.
-	 * @see org.eclipse.smarthome.core.location.LocationProvider
+	 * @return the meta object for the '<em>Full String Representation</em>' operation.
+	 * @see org.eclipse.smarthome.core.location.Location#fullStringRepresentation()
 	 * @generated
 	 */
-	EClass getLocationProvider();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.smarthome.core.location.LocationProvider#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.smarthome.core.location.LocationProvider#getName()
-	 * @see #getLocationProvider()
-	 * @generated
-	 */
-	EAttribute getLocationProvider_Name();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.smarthome.core.location.LocationProvider#provideLocations() <em>Provide Locations</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Provide Locations</em>' operation.
-	 * @see org.eclipse.smarthome.core.location.LocationProvider#provideLocations()
-	 * @generated
-	 */
-	EOperation getLocationProvider__ProvideLocations();
+	EOperation getLocation__FullStringRepresentation();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.location.AssignableProvider <em>Assignable Provider</em>}'.
@@ -751,20 +916,21 @@ public interface LocationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Assignable Provider</em>'.
 	 * @see org.eclipse.smarthome.core.location.AssignableProvider
+	 * @model instanceClass="org.eclipse.smarthome.core.location.AssignableProvider" superTypes="org.eclipse.smarthome.core.location.LocationProvider"
 	 * @generated
 	 */
 	EClass getAssignableProvider();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.smarthome.core.location.AssignableProvider#getOwner <em>Owner</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.smarthome.core.location.AssignableProvider#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Owner</em>'.
+	 * @return the meta object for the attribute '<em>Owner</em>'.
 	 * @see org.eclipse.smarthome.core.location.AssignableProvider#getOwner()
 	 * @see #getAssignableProvider()
 	 * @generated
 	 */
-	EReference getAssignableProvider_Owner();
+	EAttribute getAssignableProvider_Owner();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.location.RoomPosition <em>Room Position</em>}'.
@@ -841,17 +1007,6 @@ public interface LocationPackage extends EPackage {
 	EClass getDiscreteLocation();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.smarthome.core.location.DiscreteLocation#getSubLocations <em>Sub Locations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sub Locations</em>'.
-	 * @see org.eclipse.smarthome.core.location.DiscreteLocation#getSubLocations()
-	 * @see #getDiscreteLocation()
-	 * @generated
-	 */
-	EReference getDiscreteLocation_SubLocations();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.smarthome.core.location.DiscreteLocation#getAdjacentLocations <em>Adjacent Locations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -861,60 +1016,6 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDiscreteLocation_AdjacentLocations();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.smarthome.core.location.DiscreteLocation#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.smarthome.core.location.DiscreteLocation#getName()
-	 * @see #getDiscreteLocation()
-	 * @generated
-	 */
-	EAttribute getDiscreteLocation_Name();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.items.Item <em>Item</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Item</em>'.
-	 * @see org.eclipse.smarthome.core.items.Item
-	 * @model instanceClass="org.eclipse.smarthome.core.items.Item"
-	 * @generated
-	 */
-	EClass getItem();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.location.LocatableItem <em>Locatable Item</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Locatable Item</em>'.
-	 * @see org.eclipse.smarthome.core.location.LocatableItem
-	 * @generated
-	 */
-	EClass getLocatableItem();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.smarthome.core.location.LocatableItem#getLocation <em>Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Location</em>'.
-	 * @see org.eclipse.smarthome.core.location.LocatableItem#getLocation()
-	 * @see #getLocatableItem()
-	 * @generated
-	 */
-	EReference getLocatableItem_Location();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.smarthome.core.location.LocatableItem#getAssignedProviders <em>Assigned Providers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Assigned Providers</em>'.
-	 * @see org.eclipse.smarthome.core.location.LocatableItem#getAssignedProviders()
-	 * @see #getLocatableItem()
-	 * @generated
-	 */
-	EReference getLocatableItem_AssignedProviders();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.types.State <em>State</em>}'.
@@ -936,6 +1037,120 @@ public interface LocationPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getGeoLocation();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.location.LocationListener <em>Listener</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Listener</em>'.
+	 * @see org.eclipse.smarthome.core.location.LocationListener
+	 * @model instanceClass="org.eclipse.smarthome.core.location.LocationListener"
+	 * @generated
+	 */
+	EClass getLocationListener();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.smarthome.core.location.LocationListener#locationUpdate(org.eclipse.emf.common.util.EList) <em>Location Update</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Location Update</em>' operation.
+	 * @see org.eclipse.smarthome.core.location.LocationListener#locationUpdate(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getLocationListener__LocationUpdate__EList();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.smarthome.core.location.LocationProvider <em>Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Provider</em>'.
+	 * @see org.eclipse.smarthome.core.location.LocationProvider
+	 * @model instanceClass="org.eclipse.smarthome.core.location.LocationProvider"
+	 * @generated
+	 */
+	EClass getLocationProvider();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.smarthome.core.location.LocationProvider#provideLocations(boolean) <em>Provide Locations</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Provide Locations</em>' operation.
+	 * @see org.eclipse.smarthome.core.location.LocationProvider#provideLocations(boolean)
+	 * @generated
+	 */
+	EOperation getLocationProvider__ProvideLocations__boolean();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.smarthome.core.location.LocationProvider#register(org.eclipse.smarthome.core.location.LocationListener) <em>Register</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Register</em>' operation.
+	 * @see org.eclipse.smarthome.core.location.LocationProvider#register(org.eclipse.smarthome.core.location.LocationListener)
+	 * @generated
+	 */
+	EOperation getLocationProvider__Register__LocationListener();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.smarthome.core.location.LocationProvider#unregister(org.eclipse.smarthome.core.location.LocationListener) <em>Unregister</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unregister</em>' operation.
+	 * @see org.eclipse.smarthome.core.location.LocationProvider#unregister(org.eclipse.smarthome.core.location.LocationListener)
+	 * @generated
+	 */
+	EOperation getLocationProvider__Unregister__LocationListener();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.smarthome.core.location.LocationProvider#isAssignable() <em>Is Assignable</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Assignable</em>' operation.
+	 * @see org.eclipse.smarthome.core.location.LocationProvider#isAssignable()
+	 * @generated
+	 */
+	EOperation getLocationProvider__IsAssignable();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.smarthome.core.location.LocationProvider#asAssignableProvider() <em>As Assignable Provider</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>As Assignable Provider</em>' operation.
+	 * @see org.eclipse.smarthome.core.location.LocationProvider#asAssignableProvider()
+	 * @generated
+	 */
+	EOperation getLocationProvider__AsAssignableProvider();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.smarthome.core.thing.Thing <em>Thing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Thing</em>'.
+	 * @see org.eclipse.smarthome.core.thing.Thing
+	 * @model instanceClass="org.eclipse.smarthome.core.thing.Thing"
+	 * @generated
+	 */
+	EDataType getThing();
+
+	/**
+	 * Returns the meta object for data type '{@link java.lang.String <em>String</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>String</em>'.
+	 * @see java.lang.String
+	 * @model instanceClass="java.lang.String"
+	 * @generated
+	 */
+	EDataType getString();
+
+	/**
+	 * Returns the meta object for data type '<em>boolean</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>boolean</em>'.
+	 * @model instanceClass="boolean"
+	 * @generated
+	 */
+	EDataType getboolean();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -961,16 +1176,6 @@ public interface LocationPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.smarthome.core.location.impl.PersonImpl <em>Person</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.smarthome.core.location.impl.PersonImpl
-		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getPerson()
-		 * @generated
-		 */
-		EClass PERSON = eINSTANCE.getPerson();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.smarthome.core.location.impl.LocationImpl <em>Location</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -981,12 +1186,36 @@ public interface LocationPackage extends EPackage {
 		EClass LOCATION = eINSTANCE.getLocation();
 
 		/**
-		 * The meta object literal for the '<em><b>Contained Subjects</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LOCATION__CONTAINED_SUBJECTS = eINSTANCE.getLocation_ContainedSubjects();
+		EReference LOCATION__PARENT = eINSTANCE.getLocation_Parent();
+
+		/**
+		 * The meta object literal for the '<em><b>Sub Locations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOCATION__SUB_LOCATIONS = eINSTANCE.getLocation_SubLocations();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOCATION__NAME = eINSTANCE.getLocation_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Contained Things</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOCATION__CONTAINED_THINGS = eINSTANCE.getLocation_ContainedThings();
 
 		/**
 		 * The meta object literal for the '<em><b>Time</b></em>' attribute feature.
@@ -997,48 +1226,30 @@ public interface LocationPackage extends EPackage {
 		EAttribute LOCATION__TIME = eINSTANCE.getLocation_Time();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.smarthome.core.location.impl.LocationProviderImpl <em>Provider</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.smarthome.core.location.impl.LocationProviderImpl
-		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getLocationProvider()
-		 * @generated
-		 */
-		EClass LOCATION_PROVIDER = eINSTANCE.getLocationProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Full String Representation</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LOCATION_PROVIDER__NAME = eINSTANCE.getLocationProvider_Name();
+		EOperation LOCATION___FULL_STRING_REPRESENTATION = eINSTANCE.getLocation__FullStringRepresentation();
 
 		/**
-		 * The meta object literal for the '<em><b>Provide Locations</b></em>' operation.
+		 * The meta object literal for the '{@link org.eclipse.smarthome.core.location.AssignableProvider <em>Assignable Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LOCATION_PROVIDER___PROVIDE_LOCATIONS = eINSTANCE.getLocationProvider__ProvideLocations();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.smarthome.core.location.impl.AssignableProviderImpl <em>Assignable Provider</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.smarthome.core.location.impl.AssignableProviderImpl
+		 * @see org.eclipse.smarthome.core.location.AssignableProvider
 		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getAssignableProvider()
 		 * @generated
 		 */
 		EClass ASSIGNABLE_PROVIDER = eINSTANCE.getAssignableProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Owner</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Owner</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSIGNABLE_PROVIDER__OWNER = eINSTANCE.getAssignableProvider_Owner();
+		EAttribute ASSIGNABLE_PROVIDER__OWNER = eINSTANCE.getAssignableProvider_Owner();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.smarthome.core.location.impl.RoomPositionImpl <em>Room Position</em>}' class.
@@ -1103,64 +1314,12 @@ public interface LocationPackage extends EPackage {
 		EClass DISCRETE_LOCATION = eINSTANCE.getDiscreteLocation();
 
 		/**
-		 * The meta object literal for the '<em><b>Sub Locations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DISCRETE_LOCATION__SUB_LOCATIONS = eINSTANCE.getDiscreteLocation_SubLocations();
-
-		/**
 		 * The meta object literal for the '<em><b>Adjacent Locations</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DISCRETE_LOCATION__ADJACENT_LOCATIONS = eINSTANCE.getDiscreteLocation_AdjacentLocations();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DISCRETE_LOCATION__NAME = eINSTANCE.getDiscreteLocation_Name();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.smarthome.core.items.Item <em>Item</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.smarthome.core.items.Item
-		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getItem()
-		 * @generated
-		 */
-		EClass ITEM = eINSTANCE.getItem();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.smarthome.core.location.impl.LocatableItemImpl <em>Locatable Item</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.smarthome.core.location.impl.LocatableItemImpl
-		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getLocatableItem()
-		 * @generated
-		 */
-		EClass LOCATABLE_ITEM = eINSTANCE.getLocatableItem();
-
-		/**
-		 * The meta object literal for the '<em><b>Location</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOCATABLE_ITEM__LOCATION = eINSTANCE.getLocatableItem_Location();
-
-		/**
-		 * The meta object literal for the '<em><b>Assigned Providers</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOCATABLE_ITEM__ASSIGNED_PROVIDERS = eINSTANCE.getLocatableItem_AssignedProviders();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.smarthome.core.types.State <em>State</em>}' class.
@@ -1181,6 +1340,103 @@ public interface LocationPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GEO_LOCATION = eINSTANCE.getGeoLocation();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.smarthome.core.location.LocationListener <em>Listener</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.smarthome.core.location.LocationListener
+		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getLocationListener()
+		 * @generated
+		 */
+		EClass LOCATION_LISTENER = eINSTANCE.getLocationListener();
+
+		/**
+		 * The meta object literal for the '<em><b>Location Update</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOCATION_LISTENER___LOCATION_UPDATE__ELIST = eINSTANCE.getLocationListener__LocationUpdate__EList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.smarthome.core.location.LocationProvider <em>Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.smarthome.core.location.LocationProvider
+		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getLocationProvider()
+		 * @generated
+		 */
+		EClass LOCATION_PROVIDER = eINSTANCE.getLocationProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Provide Locations</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOCATION_PROVIDER___PROVIDE_LOCATIONS__BOOLEAN = eINSTANCE.getLocationProvider__ProvideLocations__boolean();
+
+		/**
+		 * The meta object literal for the '<em><b>Register</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOCATION_PROVIDER___REGISTER__LOCATIONLISTENER = eINSTANCE.getLocationProvider__Register__LocationListener();
+
+		/**
+		 * The meta object literal for the '<em><b>Unregister</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOCATION_PROVIDER___UNREGISTER__LOCATIONLISTENER = eINSTANCE.getLocationProvider__Unregister__LocationListener();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Assignable</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOCATION_PROVIDER___IS_ASSIGNABLE = eINSTANCE.getLocationProvider__IsAssignable();
+
+		/**
+		 * The meta object literal for the '<em><b>As Assignable Provider</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOCATION_PROVIDER___AS_ASSIGNABLE_PROVIDER = eINSTANCE.getLocationProvider__AsAssignableProvider();
+
+		/**
+		 * The meta object literal for the '<em>Thing</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.smarthome.core.thing.Thing
+		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getThing()
+		 * @generated
+		 */
+		EDataType THING = eINSTANCE.getThing();
+
+		/**
+		 * The meta object literal for the '<em>String</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.String
+		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getString()
+		 * @generated
+		 */
+		EDataType STRING = eINSTANCE.getString();
+
+		/**
+		 * The meta object literal for the '<em>boolean</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.smarthome.core.location.impl.LocationPackageImpl#getboolean()
+		 * @generated
+		 */
+		EDataType BOOLEAN = eINSTANCE.getboolean();
 
 	}
 

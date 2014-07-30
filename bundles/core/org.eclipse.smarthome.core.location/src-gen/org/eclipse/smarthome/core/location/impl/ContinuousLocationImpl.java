@@ -3,11 +3,8 @@
 package org.eclipse.smarthome.core.location.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.smarthome.core.location.ContinuousLocation;
 import org.eclipse.smarthome.core.location.LocationPackage;
 
@@ -36,7 +33,7 @@ public abstract class ContinuousLocationImpl extends LocationImpl implements Con
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float ACCURACY_EDEFAULT = 0.0F;
+	protected static final float ACCURACY_EDEFAULT = -1.0F;
 
 	/**
 	 * The cached value of the '{@link #getAccuracy() <em>Accuracy</em>}' attribute.
@@ -302,22 +299,38 @@ public abstract class ContinuousLocationImpl extends LocationImpl implements Con
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (accuracy: ");
-		result.append(accuracy);
-		result.append(", x: ");
+		StringBuffer result = new StringBuffer();
+		if (getParent() != null){
+			result.append(getParent().toString());
+			result.append(" / ");
+		}
+		
+		
+		result.append("[");
 		result.append(x);
-		result.append(", y: ");
+		result.append(",");
 		result.append(y);
-		result.append(", z: ");
+		result.append(",");
 		result.append(z);
-		result.append(')');
+		
+		if (!(accuracy < 0)){
+			result.append(" | ");
+			result.append(accuracy);
+		}
+		result.append(']');
+		
+		if (getName() != null){
+			result.append(" (");
+			result.append(getName());
+			result.append(")");
+		}
+
 		return result.toString();
 	}
 

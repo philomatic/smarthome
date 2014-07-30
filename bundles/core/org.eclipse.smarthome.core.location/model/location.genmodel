@@ -7,18 +7,19 @@
   <foreignModel>location.ecore</foreignModel>
   <genPackages prefix="Location" basePackage="org.eclipse.smarthome.core" disposableProviderFactory="true"
       ecorePackage="location.ecore#/" publicationLocation="">
-    <genClasses ecoreClass="location.ecore#//Person"/>
+    <genDataTypes ecoreDataType="location.ecore#//Thing"/>
+    <genDataTypes ecoreDataType="location.ecore#//String"/>
+    <genDataTypes ecoreDataType="location.ecore#//boolean"/>
     <genClasses ecoreClass="location.ecore#//Location">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference location.ecore#//Location/containedSubjects"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//Location/time"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference location.ecore#//Location/parent"/>
-    </genClasses>
-    <genClasses ecoreClass="location.ecore#//LocationProvider">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//LocationProvider/name"/>
-      <genOperations ecoreOperation="location.ecore#//LocationProvider/provideLocations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference location.ecore#//Location/subLocations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//Location/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute location.ecore#//Location/containedThings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//Location/time"/>
+      <genOperations ecoreOperation="location.ecore#//Location/fullStringRepresentation"/>
     </genClasses>
     <genClasses ecoreClass="location.ecore#//AssignableProvider">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference location.ecore#//AssignableProvider/owner"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute location.ecore#//AssignableProvider/owner"/>
     </genClasses>
     <genClasses ecoreClass="location.ecore#//RoomPosition"/>
     <genClasses image="false" ecoreClass="location.ecore#//ContinuousLocation">
@@ -28,17 +29,28 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//ContinuousLocation/z"/>
     </genClasses>
     <genClasses ecoreClass="location.ecore#//DiscreteLocation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference location.ecore#//DiscreteLocation/subLocations"/>
       <genFeatures notify="false" createChild="false" propertyCategory="" propertySortChoices="true"
           ecoreFeature="ecore:EReference location.ecore#//DiscreteLocation/adjacentLocations"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute location.ecore#//DiscreteLocation/name"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="location.ecore#//Item"/>
-    <genClasses ecoreClass="location.ecore#//LocatableItem">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference location.ecore#//LocatableItem/location"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference location.ecore#//LocatableItem/assignedProviders"/>
     </genClasses>
     <genClasses image="false" ecoreClass="location.ecore#//State"/>
     <genClasses ecoreClass="location.ecore#//GeoLocation"/>
+    <genClasses ecoreClass="location.ecore#//LocationListener">
+      <genOperations ecoreOperation="location.ecore#//LocationListener/locationUpdate">
+        <genParameters ecoreParameter="location.ecore#//LocationListener/locationUpdate/newLocations"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="location.ecore#//LocationProvider">
+      <genOperations ecoreOperation="location.ecore#//LocationProvider/provideLocations">
+        <genParameters ecoreParameter="location.ecore#//LocationProvider/provideLocations/refresh"/>
+      </genOperations>
+      <genOperations ecoreOperation="location.ecore#//LocationProvider/register">
+        <genParameters ecoreParameter="location.ecore#//LocationProvider/register/listener"/>
+      </genOperations>
+      <genOperations ecoreOperation="location.ecore#//LocationProvider/unregister">
+        <genParameters ecoreParameter="location.ecore#//LocationProvider/unregister/listener"/>
+      </genOperations>
+      <genOperations ecoreOperation="location.ecore#//LocationProvider/isAssignable"/>
+      <genOperations ecoreOperation="location.ecore#//LocationProvider/asAssignableProvider"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

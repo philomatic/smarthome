@@ -4,25 +4,25 @@ package org.eclipse.smarthome.core.location.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.smarthome.core.items.Item;
-
 import org.eclipse.smarthome.core.location.AssignableProvider;
 import org.eclipse.smarthome.core.location.ContinuousLocation;
 import org.eclipse.smarthome.core.location.DiscreteLocation;
 import org.eclipse.smarthome.core.location.GeoLocation;
-import org.eclipse.smarthome.core.location.LocatableItem;
 import org.eclipse.smarthome.core.location.Location;
 import org.eclipse.smarthome.core.location.LocationFactory;
+import org.eclipse.smarthome.core.location.LocationListener;
 import org.eclipse.smarthome.core.location.LocationPackage;
 import org.eclipse.smarthome.core.location.LocationProvider;
-import org.eclipse.smarthome.core.location.Person;
 import org.eclipse.smarthome.core.location.RoomPosition;
+
+import org.eclipse.smarthome.core.thing.Thing;
 
 import org.eclipse.smarthome.core.types.State;
 
@@ -38,21 +38,7 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass personEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass locationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass locationProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,20 +73,6 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass itemEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass locatableItemEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass stateEClass = null;
 
 	/**
@@ -109,6 +81,41 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 * @generated
 	 */
 	private EClass geoLocationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass locationListenerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass locationProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType thingEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType stringEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType booleanEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -176,15 +183,6 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPerson() {
-		return personEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getLocation() {
 		return locationEClass;
 	}
@@ -194,7 +192,7 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLocation_ContainedSubjects() {
+	public EReference getLocation_Parent() {
 		return (EReference)locationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -203,8 +201,35 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLocation_SubLocations() {
+		return (EReference)locationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLocation_Name() {
+		return (EAttribute)locationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLocation_ContainedThings() {
+		return (EAttribute)locationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getLocation_Time() {
-		return (EAttribute)locationEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)locationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -212,26 +237,8 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLocationProvider() {
-		return locationProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLocationProvider_Name() {
-		return (EAttribute)locationProviderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getLocationProvider__ProvideLocations() {
-		return locationProviderEClass.getEOperations().get(0);
+	public EOperation getLocation__FullStringRepresentation() {
+		return locationEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -248,8 +255,8 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssignableProvider_Owner() {
-		return (EReference)assignableProviderEClass.getEStructuralFeatures().get(0);
+	public EAttribute getAssignableProvider_Owner() {
+		return (EAttribute)assignableProviderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -320,62 +327,8 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDiscreteLocation_SubLocations() {
-		return (EReference)discreteLocationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getDiscreteLocation_AdjacentLocations() {
-		return (EReference)discreteLocationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDiscreteLocation_Name() {
-		return (EAttribute)discreteLocationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getItem() {
-		return itemEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLocatableItem() {
-		return locatableItemEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLocatableItem_Location() {
-		return (EReference)locatableItemEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLocatableItem_AssignedProviders() {
-		return (EReference)locatableItemEClass.getEStructuralFeatures().get(1);
+		return (EReference)discreteLocationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -394,6 +347,105 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 	 */
 	public EClass getGeoLocation() {
 		return geoLocationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLocationListener() {
+		return locationListenerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLocationListener__LocationUpdate__EList() {
+		return locationListenerEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLocationProvider() {
+		return locationProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLocationProvider__ProvideLocations__boolean() {
+		return locationProviderEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLocationProvider__Register__LocationListener() {
+		return locationProviderEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLocationProvider__Unregister__LocationListener() {
+		return locationProviderEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLocationProvider__IsAssignable() {
+		return locationProviderEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLocationProvider__AsAssignableProvider() {
+		return locationProviderEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getThing() {
+		return thingEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getString() {
+		return stringEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getboolean() {
+		return booleanEDataType;
 	}
 
 	/**
@@ -424,18 +476,16 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 		isCreated = true;
 
 		// Create classes and their features
-		personEClass = createEClass(PERSON);
-
 		locationEClass = createEClass(LOCATION);
-		createEReference(locationEClass, LOCATION__CONTAINED_SUBJECTS);
+		createEReference(locationEClass, LOCATION__PARENT);
+		createEReference(locationEClass, LOCATION__SUB_LOCATIONS);
+		createEAttribute(locationEClass, LOCATION__NAME);
+		createEAttribute(locationEClass, LOCATION__CONTAINED_THINGS);
 		createEAttribute(locationEClass, LOCATION__TIME);
-
-		locationProviderEClass = createEClass(LOCATION_PROVIDER);
-		createEAttribute(locationProviderEClass, LOCATION_PROVIDER__NAME);
-		createEOperation(locationProviderEClass, LOCATION_PROVIDER___PROVIDE_LOCATIONS);
+		createEOperation(locationEClass, LOCATION___FULL_STRING_REPRESENTATION);
 
 		assignableProviderEClass = createEClass(ASSIGNABLE_PROVIDER);
-		createEReference(assignableProviderEClass, ASSIGNABLE_PROVIDER__OWNER);
+		createEAttribute(assignableProviderEClass, ASSIGNABLE_PROVIDER__OWNER);
 
 		roomPositionEClass = createEClass(ROOM_POSITION);
 
@@ -446,19 +496,26 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 		createEAttribute(continuousLocationEClass, CONTINUOUS_LOCATION__Z);
 
 		discreteLocationEClass = createEClass(DISCRETE_LOCATION);
-		createEReference(discreteLocationEClass, DISCRETE_LOCATION__SUB_LOCATIONS);
 		createEReference(discreteLocationEClass, DISCRETE_LOCATION__ADJACENT_LOCATIONS);
-		createEAttribute(discreteLocationEClass, DISCRETE_LOCATION__NAME);
-
-		itemEClass = createEClass(ITEM);
-
-		locatableItemEClass = createEClass(LOCATABLE_ITEM);
-		createEReference(locatableItemEClass, LOCATABLE_ITEM__LOCATION);
-		createEReference(locatableItemEClass, LOCATABLE_ITEM__ASSIGNED_PROVIDERS);
 
 		stateEClass = createEClass(STATE);
 
 		geoLocationEClass = createEClass(GEO_LOCATION);
+
+		locationListenerEClass = createEClass(LOCATION_LISTENER);
+		createEOperation(locationListenerEClass, LOCATION_LISTENER___LOCATION_UPDATE__ELIST);
+
+		locationProviderEClass = createEClass(LOCATION_PROVIDER);
+		createEOperation(locationProviderEClass, LOCATION_PROVIDER___PROVIDE_LOCATIONS__BOOLEAN);
+		createEOperation(locationProviderEClass, LOCATION_PROVIDER___REGISTER__LOCATIONLISTENER);
+		createEOperation(locationProviderEClass, LOCATION_PROVIDER___UNREGISTER__LOCATIONLISTENER);
+		createEOperation(locationProviderEClass, LOCATION_PROVIDER___IS_ASSIGNABLE);
+		createEOperation(locationProviderEClass, LOCATION_PROVIDER___AS_ASSIGNABLE_PROVIDER);
+
+		// Create data types
+		thingEDataType = createEDataType(THING);
+		stringEDataType = createEDataType(STRING);
+		booleanEDataType = createEDataType(BOOLEAN);
 	}
 
 	/**
@@ -489,52 +546,65 @@ public class LocationPackageImpl extends EPackageImpl implements LocationPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		personEClass.getESuperTypes().add(this.getLocatableItem());
 		locationEClass.getESuperTypes().add(this.getState());
 		assignableProviderEClass.getESuperTypes().add(this.getLocationProvider());
 		roomPositionEClass.getESuperTypes().add(this.getContinuousLocation());
 		continuousLocationEClass.getESuperTypes().add(this.getLocation());
 		discreteLocationEClass.getESuperTypes().add(this.getLocation());
-		locatableItemEClass.getESuperTypes().add(this.getItem());
 		geoLocationEClass.getESuperTypes().add(this.getContinuousLocation());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(personEClass, Person.class, "Person", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(locationEClass, Location.class, "Location", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLocation_ContainedSubjects(), this.getLocatableItem(), null, "containedSubjects", null, 0, -1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLocation_Parent(), this.getLocation(), this.getLocation_SubLocations(), "parent", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLocation_SubLocations(), this.getLocation(), this.getLocation_Parent(), "subLocations", null, 0, -1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLocation_Name(), this.getString(), "name", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLocation_ContainedThings(), this.getThing(), "containedThings", null, 0, -1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLocation_Time(), ecorePackage.getEDate(), "time", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(locationProviderEClass, LocationProvider.class, "LocationProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLocationProvider_Name(), ecorePackage.getEString(), "name", null, 0, 1, LocationProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEOperation(getLocation__FullStringRepresentation(), this.getString(), "fullStringRepresentation", 0, 1, IS_UNIQUE, !IS_ORDERED);
 
-		initEOperation(getLocationProvider__ProvideLocations(), this.getLocation(), "provideLocations", 0, -1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(assignableProviderEClass, AssignableProvider.class, "AssignableProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssignableProvider_Owner(), this.getLocatableItem(), null, "owner", null, 0, 1, AssignableProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(assignableProviderEClass, AssignableProvider.class, "AssignableProvider", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAssignableProvider_Owner(), this.getThing(), "owner", null, 1, 1, AssignableProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(roomPositionEClass, RoomPosition.class, "RoomPosition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(continuousLocationEClass, ContinuousLocation.class, "ContinuousLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContinuousLocation_Accuracy(), ecorePackage.getEFloat(), "accuracy", null, 0, 1, ContinuousLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContinuousLocation_Accuracy(), ecorePackage.getEFloat(), "accuracy", "-1", 0, 1, ContinuousLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getContinuousLocation_X(), ecorePackage.getEDouble(), "x", null, 0, 1, ContinuousLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getContinuousLocation_Y(), ecorePackage.getEDouble(), "y", null, 0, 1, ContinuousLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getContinuousLocation_Z(), ecorePackage.getEDouble(), "z", null, 0, 1, ContinuousLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(discreteLocationEClass, DiscreteLocation.class, "DiscreteLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDiscreteLocation_SubLocations(), this.getLocation(), null, "subLocations", null, 0, -1, DiscreteLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDiscreteLocation_AdjacentLocations(), this.getDiscreteLocation(), null, "adjacentLocations", null, 0, -1, DiscreteLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDiscreteLocation_Name(), ecorePackage.getEString(), "name", null, 0, 1, DiscreteLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(itemEClass, Item.class, "Item", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(locatableItemEClass, LocatableItem.class, "LocatableItem", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLocatableItem_Location(), this.getLocation(), null, "location", null, 0, 1, LocatableItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLocatableItem_AssignedProviders(), this.getAssignableProvider(), null, "assignedProviders", null, 0, -1, LocatableItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(geoLocationEClass, GeoLocation.class, "GeoLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(locationListenerEClass, LocationListener.class, "LocationListener", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		EOperation op = initEOperation(getLocationListener__LocationUpdate__EList(), null, "locationUpdate", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getLocation(), "newLocations", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(locationProviderEClass, LocationProvider.class, "LocationProvider", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getLocationProvider__ProvideLocations__boolean(), this.getLocation(), "provideLocations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getboolean(), "refresh", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getLocationProvider__Register__LocationListener(), null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getLocationListener(), "listener", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getLocationProvider__Unregister__LocationListener(), null, "unregister", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getLocationListener(), "listener", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getLocationProvider__IsAssignable(), this.getboolean(), "isAssignable", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getLocationProvider__AsAssignableProvider(), this.getAssignableProvider(), "asAssignableProvider", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		// Initialize data types
+		initEDataType(thingEDataType, Thing.class, "Thing", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(stringEDataType, String.class, "String", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(booleanEDataType, boolean.class, "boolean", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

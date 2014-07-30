@@ -4,6 +4,7 @@ package org.eclipse.smarthome.core.location;
 
 import org.eclipse.emf.ecore.EFactory;
 
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
@@ -20,25 +21,6 @@ public interface LocationFactory extends EFactory {
 	 * @generated
 	 */
 	LocationFactory eINSTANCE = org.eclipse.smarthome.core.location.impl.LocationFactoryImpl.init();
-
-	/**
-	 * Returns a new object of class '<em>Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Provider</em>'.
-	 * @generated
-	 */
-	LocationProvider createLocationProvider();
-
-	/**
-	 * Returns a new object of class '<em>Assignable Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Assignable Provider</em>'.
-	 * @generated
-	 */
-	AssignableProvider createAssignableProvider();
-
 	/**
 	 * Returns a new object of class '<em>Room Position</em>'.
 	 * <!-- begin-user-doc -->

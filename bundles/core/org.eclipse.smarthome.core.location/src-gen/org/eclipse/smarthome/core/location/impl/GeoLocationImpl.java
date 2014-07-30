@@ -34,13 +34,13 @@ public class GeoLocationImpl extends ContinuousLocationImpl implements GeoLocati
 	protected EClass eStaticClass() {
 		return LocationPackage.Literals.GEO_LOCATION;
 	}
-
+	
 	/**
 	 * @generated NOT
 	 */
 	@Override
-	public String format(String pattern) {
-		return String.format(pattern, super.toString());
+	public String format(String pattern){
+		return String.format(pattern, toString());
 	}
 
 } //GeoLocationImpl

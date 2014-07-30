@@ -4,13 +4,8 @@ package org.eclipse.smarthome.core.location.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.smarthome.core.items.Item;
-
 import org.eclipse.smarthome.core.location.*;
-
 import org.eclipse.smarthome.core.types.State;
 
 /**
@@ -70,24 +65,10 @@ public class LocationSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case LocationPackage.PERSON: {
-				Person person = (Person)theEObject;
-				T result = casePerson(person);
-				if (result == null) result = caseLocatableItem(person);
-				if (result == null) result = caseItem(person);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case LocationPackage.LOCATION: {
 				Location location = (Location)theEObject;
 				T result = caseLocation(location);
 				if (result == null) result = caseState(location);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LocationPackage.LOCATION_PROVIDER: {
-				LocationProvider locationProvider = (LocationProvider)theEObject;
-				T result = caseLocationProvider(locationProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -123,19 +104,6 @@ public class LocationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LocationPackage.ITEM: {
-				Item item = (Item)theEObject;
-				T result = caseItem(item);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LocationPackage.LOCATABLE_ITEM: {
-				LocatableItem locatableItem = (LocatableItem)theEObject;
-				T result = caseLocatableItem(locatableItem);
-				if (result == null) result = caseItem(locatableItem);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case LocationPackage.STATE: {
 				State state = (State)theEObject;
 				T result = caseState(state);
@@ -151,23 +119,20 @@ public class LocationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case LocationPackage.LOCATION_LISTENER: {
+				LocationListener locationListener = (LocationListener)theEObject;
+				T result = caseLocationListener(locationListener);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LocationPackage.LOCATION_PROVIDER: {
+				LocationProvider locationProvider = (LocationProvider)theEObject;
+				T result = caseLocationProvider(locationProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Person</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Person</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePerson(Person object) {
-		return null;
 	}
 
 	/**
@@ -186,21 +151,6 @@ public class LocationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLocationProvider(LocationProvider object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Assignable Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -212,6 +162,21 @@ public class LocationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAssignableProvider(AssignableProvider object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLocationProvider(LocationProvider object) {
 		return null;
 	}
 
@@ -261,36 +226,6 @@ public class LocationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Item</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Item</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseItem(Item object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Locatable Item</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Locatable Item</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLocatableItem(LocatableItem object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -317,6 +252,21 @@ public class LocationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGeoLocation(GeoLocation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Listener</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Listener</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLocationListener(LocationListener object) {
 		return null;
 	}
 

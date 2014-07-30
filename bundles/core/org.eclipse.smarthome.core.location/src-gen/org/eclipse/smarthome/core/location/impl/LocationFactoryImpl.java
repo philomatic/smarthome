@@ -3,14 +3,13 @@
 package org.eclipse.smarthome.core.location.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.smarthome.core.location.*;
+import org.eclipse.smarthome.core.thing.Thing;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,8 +55,6 @@ public class LocationFactoryImpl extends EFactoryImpl implements LocationFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LocationPackage.LOCATION_PROVIDER: return createLocationProvider();
-			case LocationPackage.ASSIGNABLE_PROVIDER: return createAssignableProvider();
 			case LocationPackage.ROOM_POSITION: return createRoomPosition();
 			case LocationPackage.DISCRETE_LOCATION: return createDiscreteLocation();
 			case LocationPackage.GEO_LOCATION: return createGeoLocation();
@@ -71,9 +68,18 @@ public class LocationFactoryImpl extends EFactoryImpl implements LocationFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LocationProvider createLocationProvider() {
-		LocationProviderImpl locationProvider = new LocationProviderImpl();
-		return locationProvider;
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case LocationPackage.THING:
+				return createThingFromString(eDataType, initialValue);
+			case LocationPackage.STRING:
+				return createStringFromString(eDataType, initialValue);
+			case LocationPackage.BOOLEAN:
+				return createbooleanFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
 	}
 
 	/**
@@ -81,9 +87,18 @@ public class LocationFactoryImpl extends EFactoryImpl implements LocationFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssignableProvider createAssignableProvider() {
-		AssignableProviderImpl assignableProvider = new AssignableProviderImpl();
-		return assignableProvider;
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case LocationPackage.THING:
+				return convertThingToString(eDataType, instanceValue);
+			case LocationPackage.STRING:
+				return convertStringToString(eDataType, instanceValue);
+			case LocationPackage.BOOLEAN:
+				return convertbooleanToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
 	}
 
 	/**
@@ -114,6 +129,60 @@ public class LocationFactoryImpl extends EFactoryImpl implements LocationFactory
 	public GeoLocation createGeoLocation() {
 		GeoLocationImpl geoLocation = new GeoLocationImpl();
 		return geoLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Thing createThingFromString(EDataType eDataType, String initialValue) {
+		return (Thing)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertThingToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String createStringFromString(EDataType eDataType, String initialValue) {
+		return (String)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStringToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Boolean createbooleanFromString(EDataType eDataType, String initialValue) {
+		return (Boolean)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertbooleanToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

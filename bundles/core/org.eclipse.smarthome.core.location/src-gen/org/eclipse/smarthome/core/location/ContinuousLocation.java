@@ -25,6 +25,7 @@ package org.eclipse.smarthome.core.location;
 public interface ContinuousLocation extends Location {
 	/**
 	 * Returns the value of the '<em><b>Accuracy</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Accuracy</em>' attribute isn't clear,
@@ -34,7 +35,7 @@ public interface ContinuousLocation extends Location {
 	 * @return the value of the '<em>Accuracy</em>' attribute.
 	 * @see #setAccuracy(float)
 	 * @see org.eclipse.smarthome.core.location.LocationPackage#getContinuousLocation_Accuracy()
-	 * @model
+	 * @model default="-1"
 	 * @generated
 	 */
 	float getAccuracy();

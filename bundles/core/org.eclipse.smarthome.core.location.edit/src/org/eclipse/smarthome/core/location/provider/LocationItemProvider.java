@@ -4,7 +4,6 @@ package org.eclipse.smarthome.core.location.provider;
 
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -26,6 +25,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.smarthome.core.location.Location;
+import org.eclipse.smarthome.core.location.LocationFactory;
 import org.eclipse.smarthome.core.location.LocationPackage;
 
 /**
@@ -63,9 +63,55 @@ public class LocationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addContainedThingsPropertyDescriptor(object);
 			addTimePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Location_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Location_name_feature", "_UI_Location_type"),
+				 LocationPackage.Literals.LOCATION__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Contained Things feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainedThingsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Location_containedThings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Location_containedThings_feature", "_UI_Location_type"),
+				 LocationPackage.Literals.LOCATION__CONTAINED_THINGS,
+				 true,
+				 false,
+				 true,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -102,7 +148,7 @@ public class LocationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LocationPackage.Literals.LOCATION__CONTAINED_SUBJECTS);
+			childrenFeatures.add(LocationPackage.Literals.LOCATION__SUB_LOCATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -139,8 +185,7 @@ public class LocationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((Location)object).getTime();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((Location)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Location_type") :
 			getString("_UI_Location_type") + " " + label;
@@ -159,10 +204,11 @@ public class LocationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Location.class)) {
+			case LocationPackage.LOCATION__NAME:
 			case LocationPackage.LOCATION__TIME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case LocationPackage.LOCATION__CONTAINED_SUBJECTS:
+			case LocationPackage.LOCATION__SUB_LOCATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -179,6 +225,21 @@ public class LocationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LocationPackage.Literals.LOCATION__SUB_LOCATIONS,
+				 LocationFactory.eINSTANCE.createRoomPosition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LocationPackage.Literals.LOCATION__SUB_LOCATIONS,
+				 LocationFactory.eINSTANCE.createDiscreteLocation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LocationPackage.Literals.LOCATION__SUB_LOCATIONS,
+				 LocationFactory.eINSTANCE.createGeoLocation()));
 	}
 
 	/**

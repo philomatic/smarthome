@@ -34,13 +34,13 @@ public class RoomPositionImpl extends ContinuousLocationImpl implements RoomPosi
 	protected EClass eStaticClass() {
 		return LocationPackage.Literals.ROOM_POSITION;
 	}
-
+	
 	/**
 	 * @generated NOT
 	 */
 	@Override
-	public String format(String pattern) {
-		return String.format(pattern, super.toString());
+	public String format(String pattern){
+		return String.format(pattern, toString());
 	}
 
 } //RoomPositionImpl

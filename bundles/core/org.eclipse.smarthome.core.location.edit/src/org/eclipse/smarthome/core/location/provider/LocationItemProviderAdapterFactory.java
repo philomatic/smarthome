@@ -72,52 +72,6 @@ public class LocationItemProviderAdapterFactory extends LocationAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.smarthome.core.location.LocationProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LocationProviderItemProvider locationProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.smarthome.core.location.LocationProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLocationProviderAdapter() {
-		if (locationProviderItemProvider == null) {
-			locationProviderItemProvider = new LocationProviderItemProvider(this);
-		}
-
-		return locationProviderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.smarthome.core.location.AssignableProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AssignableProviderItemProvider assignableProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.smarthome.core.location.AssignableProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAssignableProviderAdapter() {
-		if (assignableProviderItemProvider == null) {
-			assignableProviderItemProvider = new AssignableProviderItemProvider(this);
-		}
-
-		return assignableProviderItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.smarthome.core.location.RoomPosition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -285,8 +239,6 @@ public class LocationItemProviderAdapterFactory extends LocationAdapterFactory i
 	 * @generated
 	 */
 	public void dispose() {
-		if (locationProviderItemProvider != null) locationProviderItemProvider.dispose();
-		if (assignableProviderItemProvider != null) assignableProviderItemProvider.dispose();
 		if (roomPositionItemProvider != null) roomPositionItemProvider.dispose();
 		if (discreteLocationItemProvider != null) discreteLocationItemProvider.dispose();
 		if (geoLocationItemProvider != null) geoLocationItemProvider.dispose();

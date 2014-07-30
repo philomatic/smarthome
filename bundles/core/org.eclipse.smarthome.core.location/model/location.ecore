@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="location" nsURI="http://location/1.0" nsPrefix="location">
-  <eClassifiers xsi:type="ecore:EClass" name="Person" abstract="true" eSuperTypes="#//LocatableItem"/>
   <eClassifiers xsi:type="ecore:EClass" name="Location" abstract="true" eSuperTypes="#//State">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="containedSubjects" upperBound="-1"
-        eType="#//LocatableItem"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Return the time of this Location fix"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//DiscreteLocation"
-        eOpposite="#//DiscreteLocation/subLocations"/>
+    <eOperations name="fullStringRepresentation" ordered="false" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Location"
+        eOpposite="#//Location/subLocations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subLocations" upperBound="-1"
+        eType="#//Location" containment="true" eOpposite="#//Location/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containedThings" upperBound="-1"
+        eType="#//Thing"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LocationProvider">
-    <eOperations name="provideLocations" upperBound="-1" eType="#//Location">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="there could be multiple locations, e.g. for a capfloor recognizing multiple subjects"/>
-      </eAnnotations>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AssignableProvider" eSuperTypes="#//LocationProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//LocatableItem"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignableProvider" instanceClassName="org.eclipse.smarthome.core.location.AssignableProvider"
+      abstract="true" interface="true" eSuperTypes="#//LocationProvider">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="owner" lowerBound="1" eType="#//Thing"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RoomPosition" eSuperTypes="#//ContinuousLocation">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -31,26 +23,40 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContinuousLocation" abstract="true"
       eSuperTypes="#//Location">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accuracy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accuracy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"
+        defaultValueLiteral="-1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="z" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiscreteLocation" eSuperTypes="#//Location">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subLocations" upperBound="-1"
-        eType="#//Location" containment="true" eOpposite="#//Location/parent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="adjacentLocations" upperBound="-1"
         eType="#//DiscreteLocation"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Item" instanceClassName="org.eclipse.smarthome.core.items.Item"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LocatableItem" abstract="true" eSuperTypes="#//Item">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//Location"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedProviders" upperBound="-1"
-        eType="#//AssignableProvider"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" instanceClassName="org.eclipse.smarthome.core.types.State"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="GeoLocation" eSuperTypes="#//ContinuousLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LocationListener" instanceClassName="org.eclipse.smarthome.core.location.LocationListener"
+      abstract="true" interface="true">
+    <eOperations name="locationUpdate">
+      <eParameters name="newLocations" upperBound="-1" eType="#//Location"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LocationProvider" instanceClassName="org.eclipse.smarthome.core.location.LocationProvider"
+      abstract="true" interface="true">
+    <eOperations name="provideLocations" upperBound="-1" eType="#//Location">
+      <eParameters name="refresh" eType="#//boolean"/>
+    </eOperations>
+    <eOperations name="register">
+      <eParameters name="listener" eType="#//LocationListener"/>
+    </eOperations>
+    <eOperations name="unregister">
+      <eParameters name="listener" eType="#//LocationListener"/>
+    </eOperations>
+    <eOperations name="isAssignable" eType="#//boolean"/>
+    <eOperations name="asAssignableProvider" eType="#//AssignableProvider"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Thing" instanceClassName="org.eclipse.smarthome.core.thing.Thing"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="boolean" instanceClassName="boolean"/>
 </ecore:EPackage>
